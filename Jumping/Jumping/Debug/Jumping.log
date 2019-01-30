@@ -1,0 +1,20 @@
+﻿  Jumping.cpp
+c:\users\mehol\source\repos\jumping\jumping\hardwarecheck.h(16): warning C4101: 'Buffer': unreferenced local variable
+c:\users\mehol\source\repos\jumping\jumping\sfml-2.5.1\include\sfml\graphics\rect.inl(81): error C2589: '(': illegal token on right side of '::'
+c:\users\mehol\source\repos\jumping\jumping\sfml-2.5.1\include\sfml\graphics\rect.inl(114): error C2589: '(': illegal token on right side of '::'
+  main.cpp
+c:\users\mehol\source\repos\jumping\jumping\single.h(12): error C2248: 'Jumping::Jumping': cannot access private member declared in class 'Jumping'
+  c:\users\mehol\source\repos\jumping\jumping\jumping.h(15): note: see declaration of 'Jumping::Jumping'
+  c:\users\mehol\source\repos\jumping\jumping\jumping.h(7): note: see declaration of 'Jumping'
+  c:\users\mehol\source\repos\jumping\jumping\single.h(11): note: while compiling class template member function 'T *Single<T>::Instance(void)'
+          with
+          [
+              T=Jumping
+          ]
+  c:\users\mehol\source\repos\jumping\jumping\main.cpp(7): note: see reference to function template instantiation 'T *Single<T>::Instance(void)' being compiled
+          with
+          [
+              T=Jumping
+          ]
+  c:\users\mehol\source\repos\jumping\jumping\jumping.h(8): note: see reference to class template instantiation 'Single<Jumping>' being compiled
+  Generating Code...
