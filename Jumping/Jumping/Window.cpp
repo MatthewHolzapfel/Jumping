@@ -11,6 +11,10 @@ void Window::Initialize(int _width, int _height)
 
 }
 
+Window::~Window()
+{
+}
+
 sf::RenderWindow* Window::GetWindow() const
 {
 	return window;
