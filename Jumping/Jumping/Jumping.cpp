@@ -1,3 +1,4 @@
+#include <SFML/Graphics.hpp>
 #include "Jumping.h"
 #include "HardwareCheck.h"
 #include "Window.h"
@@ -30,6 +31,7 @@ bool Jumping::Start()
 	if (!CheckSystemRequirements())
 		return false;
 
+	Open();
 	return true;
 }
 

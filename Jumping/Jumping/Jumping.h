@@ -12,6 +12,7 @@ public:
 	bool Start();
 	void Open();
 private:
+	friend Single<Jumping>;
 	Jumping();
 	bool CheckSystemRequirements();
 };
