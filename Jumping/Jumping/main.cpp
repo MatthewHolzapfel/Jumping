@@ -5,7 +5,6 @@
 #include "Music.h"
 #include <SFML/Audio.hpp>
 
-
 int main()
 {
 	if (Jumping::Instance()->Start())
@@ -15,10 +14,13 @@ int main()
 	shape.setFillColor(sf::Color::Green);
 	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML");
 
-	//Music::Music();
+	Music myMusic;
 
+	myMusic.PlayMusic("MarioBGM.ogg");
+	
 	while (window.isOpen())
 	{
+		
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
