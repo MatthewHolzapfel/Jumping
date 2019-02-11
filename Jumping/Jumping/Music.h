@@ -1,15 +1,13 @@
-//#pragma once
-//#include "Single.h"
-//#include <SFML/Audio.hpp>
-//
-//class Music : public Single<Music>
-//{
-//private:
-//	sf::Music* music;
-//	//friend Single;
-//	Music();
-//
-//public:
-//	void PlayMusic();
-//	~Music();
-//};
+#pragma once
+#include <SFML/Audio.hpp>
+
+//#define MAX_NUMBER_OF_ITEMS 3
+
+class Music
+{
+public:
+	Music();
+	~Music();
+	void PlayMusic();
+	
+};

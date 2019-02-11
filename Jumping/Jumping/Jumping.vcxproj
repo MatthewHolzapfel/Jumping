@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B3FF4A59-4E78-4C73-B4F4-02472E14638E}</ProjectGuid>
     <RootNamespace>Jumping</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="Jumping.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HardwareCheck.h" />
     <ClInclude Include="Jumping.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Single.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
