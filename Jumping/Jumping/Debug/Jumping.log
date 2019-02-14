@@ -1,4 +1,13 @@
-﻿  main.cpp
+﻿  Custom Transform.cpp
+  Graphics.cpp
+  Jumping.cpp
+c:\users\mehol\desktop\comparing\jumping-ed7c37a6d957b5592f22f24e6d15498309a12d21\jumping\jumping\hardwarecheck.h(16): warning C4101: 'Buffer': unreferenced local variable
+  Keyboard Input.cpp
+  main.cpp
   Music.cpp
+  Scene Graph.cpp
+  stdafx.cpp
+  Timer.cpp
+  Window.cpp
   Generating Code...
-  Jumping.vcxproj -> C:\Users\101044351\Desktop\Jumping-Kevin\Jumping\Debug\Jumping.exe
+  Jumping.vcxproj -> C:\Users\mehol\Desktop\Comparing\Jumping-ed7c37a6d957b5592f22f24e6d15498309a12d21\Jumping\Debug\Jumping.exe
