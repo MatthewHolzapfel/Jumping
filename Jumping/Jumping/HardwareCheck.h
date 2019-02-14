@@ -29,7 +29,8 @@ public:
 		RegQueryValueEx(hKey, "~MHz", NULL, NULL, (LPBYTE)&dwMHz, &BufSize);
 
 		std::string Freq = "CPU Frequency: " + std::to_string(dwMHz) + "MHz\n";
-		std::cout << Freq;
+		// convert the DWORD to a CString:
+		OutputDebugStringA(Freq.c_str());
 
 		SYSTEM_INFO sysInfo;
 		GetSystemInfo(&sysInfo);
@@ -49,10 +50,10 @@ public:
 		default: process += "Unknown\n";
 			break;
 		}
-		std::cout << process;
+		OutputDebugStringA(process.c_str());
 
 
-
+		
 	}
 
 	void Memory()
@@ -72,12 +73,12 @@ public:
 		availPhys = "There are " + availPhys + " free  KB of physical memory.\n";
 		totalVirt = "There are " + totalVirt + " total KB of virtual memory.\n";
 		availVirt = "There are " + availVirt + " free  KB of virtual memory.\n";
-		std::cout << memUsage << std::endl;
-		std::cout << totalPhys << std::endl;
-		std::cout << availPhys << std::endl;
-		std::cout << totalVirt << std::endl;
-		std::cout << availVirt << std::endl;
-
+		OutputDebugStringA(memUsage.c_str());
+		OutputDebugStringA(totalPhys.c_str());
+		OutputDebugStringA(availPhys.c_str());
+		OutputDebugStringA(totalVirt.c_str());
+		OutputDebugStringA(availVirt.c_str());
+		
 	}
 
 	bool Storage()
