@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include <iostream>
 #include <string>
@@ -45,7 +46,7 @@ int main(int _width, int _height) {
 
 	window.clear();
 	window.display();
-} 
+} */
 
 
 int main()
@@ -90,4 +91,4 @@ int main()
 		window.clear();
 		window.display(); 
 	}
-} */
+}
