@@ -3,6 +3,8 @@
 #include "HardwareCheck.h"
 #include "Window.h"
 #include <iostream>
+#include "Timer.h"
+
 
 Jumping::~Jumping()
 {
@@ -12,6 +14,9 @@ Jumping::~Jumping()
 void Jumping::Open()
 {
 	window = Window::Instance();
+	window->Initialize(200, 200);
+	Timer timer;
+	timer.Start();
 }
 
 Jumping::Jumping()
@@ -47,7 +52,7 @@ bool Jumping::CheckSystemRequirements()
 {
 	HardwareCheck hardwareCheck;
 	hardwareCheck.DisplayCPUStats();
-
+	hardwareCheck.Memory();
 	if (!hardwareCheck.Storage())
 		return false;
 
