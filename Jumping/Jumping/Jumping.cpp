@@ -17,6 +17,12 @@ void Jumping::Open()
 	window->Initialize(200, 200);
 	Timer timer;
 	timer.Start();
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		std::cout << "Jump Player" << std::endl;
+	}
+
 }
 
 Jumping::Jumping()
