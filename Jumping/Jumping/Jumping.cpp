@@ -23,6 +23,16 @@ void Jumping::Open()
 		std::cout << "Jump Player" << std::endl;
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))
+	{
+		std::cout << "Move right Player" << std::endl;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))
+	{
+		std::cout << "Move left Player" << std::endl; 
+	}
+
 }
 
 Jumping::Jumping()
