@@ -34,11 +34,18 @@ public:
 		while (window.isOpen())
 		{
 			sf::Event event;
-
+			window.setKeyRepeatEnabled(false);
 			while (window.pollEvent(event))
 			{
 				switch (event.type)
 				{
+					case sf::Event::KeyPressed:
+						if (event.key.code == sf::Keyboard::Space)
+						{
+							std::cout << "Jump Player" << std::endl;
+						}
+						break;
+
 				case sf::Event::Closed:
 					window.close();
 					return;
