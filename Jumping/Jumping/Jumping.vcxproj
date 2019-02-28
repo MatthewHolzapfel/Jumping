@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="HardwareCheck.h" />
     <ClInclude Include="Jumping.h" />
+    <ClInclude Include="Keyboard Input.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Scene Graph.h" />
     <ClInclude Include="Single.h" />

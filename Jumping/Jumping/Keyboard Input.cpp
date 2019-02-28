@@ -1,16 +1,26 @@
-/*
-
+#include "SFML/Graphics.hpp"
+#include "Keyboard Input.h"
 #include "stdafx.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-int main() {
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+Input::Input() {
+
+}
+
+void Input::jump() {
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		// left key is pressed: move our character
-		character.move(1.f, 0.f);
+		std::cout << "Jump Player" << std::endl;
 	}
-} */
+
+}
+
+Input::~Input() {
+
+}
+	
