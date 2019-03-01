@@ -23,7 +23,7 @@ int main()
 	
 
 	Music myMusic;
-	//myMusic.PlayMusic("MarioBGM.ogg");
+	myMusic.PlayMusic("MarioBGM.ogg");
 	
 
 

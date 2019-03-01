@@ -7,7 +7,7 @@
 
 using namespace std;
 
-
+sf::Event event;
 Input::Input() {
 
 }
@@ -26,37 +26,50 @@ void Input::move(sf::RectangleShape *s) {
 	SoundEffects mySound;
 	mySound.SetSoundBuffer("Walking.wav");
 	
-
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		
-		mySound.SFX();
+		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+
+
+			mySound.SFX();
+			
+		}
 		std::cout << "Move Left" << std::endl;
 		s->move(sf::Vector2f(-2.5f, 0.0));
 		
-
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		
-		mySound.SFX();
+		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+
+
+			mySound.SFX();
+
+		}
 		std::cout << "Move Right" << std::endl;
 		s->move(sf::Vector2f(2.5f, 0.0));
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		
-		mySound.SFX();
+		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+
+
+			mySound.SFX();
+
+		}
 		std::cout << "Move Up" << std::endl;
 		s->move(sf::Vector2f(0.0, -2.5));
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		
-		mySound.SFX();
+		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+
+
+			mySound.SFX();
+
+		}
 		std::cout << "Move Down" << std::endl;
 		s->move(sf::Vector2f(0.0, 2.5f));
 		

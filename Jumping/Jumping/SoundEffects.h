@@ -13,5 +13,6 @@ public:
 	sf::SoundBuffer* soundBufPtr;
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
+	
 };
 
