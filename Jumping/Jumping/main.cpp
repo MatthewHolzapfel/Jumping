@@ -5,6 +5,9 @@
 #include "Music.h"
 #include "Keyboard Input.h"
 #include <SFML/Audio.hpp>
+#include "SoundEffects.h"
+
+using namespace std;
 
 int main()
 {
@@ -12,17 +15,19 @@ int main()
 		Jumping::Instance()->Open();
 
 	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML");
-	sf::RectangleShape shape;
-	shape.setSize(sf::Vector2f(200,100));
-	shape.setFillColor(sf::Color::Green);
-	shape.setPosition(sf::Vector2f(window.getSize().x/2, window.getSize().y / 2));
-	shape.setOrigin(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+	sf::RectangleShape *shape1 = new sf::RectangleShape;
+	shape1->setSize(sf::Vector2f(200, 100));
+	shape1->setFillColor(sf::Color::Green);
+	shape1->setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
+	shape1->setOrigin(sf::Vector2f(shape1->getSize().x / 2, shape1->getSize().y / 2));
 	
 
 	Music myMusic;
-	myMusic.PlayMusic("MarioBGM.ogg");
-
+	//myMusic.PlayMusic("MarioBGM.ogg");
 	
+
+
+
 	while (window.isOpen())
 	{
 		
@@ -32,14 +37,17 @@ int main()
 
 			Input myInput;
 			myInput.jump();
+			myInput.move(shape1);
 
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 
+
 		window.clear();
-		window.draw(shape);
+		window.draw(*shape1);
 		window.display();
+		
 	}
 
 

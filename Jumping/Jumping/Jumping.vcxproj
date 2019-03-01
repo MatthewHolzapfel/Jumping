@@ -139,6 +139,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Scene Graph.cpp" />
+    <ClCompile Include="SoundEffects.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Music.h" />
     <ClInclude Include="Scene Graph.h" />
     <ClInclude Include="Single.h" />
+    <ClInclude Include="SoundEffects.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />

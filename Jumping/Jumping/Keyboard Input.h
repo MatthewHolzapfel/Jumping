@@ -9,5 +9,6 @@ public:
 	Input();
 	~Input();
 	void jump();
+	void move(sf::RectangleShape *s);
 	
 };
