@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "Window.h"
 #include "Music.h"
+#include "Keyboard Input.h"
 #include <SFML/Audio.hpp>
 
 int main()
@@ -17,24 +18,30 @@ int main()
 	Music myMusic;
 
 	myMusic.PlayMusic("MarioBGM.ogg");
-	
+
 	while (window.isOpen())
 	{
 		
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+		Input myInput;
+			myInput.jump();
+
 			if (event.type == sf::Event::Closed)
 				window.close();
-		}
+
+
+			
+	    }
 
 		window.clear();
 		window.draw(shape);
 		window.display();
+
+
+		
 	}
-
-
-	
 
 	int a;
 	std::cin >> a;

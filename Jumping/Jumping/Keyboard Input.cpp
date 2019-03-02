@@ -1,14 +1,27 @@
 #include "SFML/Graphics.hpp"
-
+#include "Keyboard Input.h"
 #include "stdafx.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-int jump() {
+Input::Input() {
 
-	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
+}
+
+void Input::jump() {
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		std::cout << "Jump Player" << std::endl;
+	}
+
+
+
+
+	/*sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
 
 	while (window.isOpen())
 	{
@@ -33,8 +46,12 @@ int jump() {
 
 		window.clear();
 	}
+	*/
 
-
-	return 0;
+	return;
 	
 } 
+
+Input::~Input() {
+
+}
