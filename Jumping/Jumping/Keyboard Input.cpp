@@ -8,12 +8,13 @@
 using namespace std;
 
 //sf::Event event;
-Player::Player( float speed)
+Player::Player(float speed)
 {
 	this->speed = speed;
 	body.setSize(sf::Vector2f(100.0f, 150.0f));
 	body.setFillColor(sf::Color::Green);
 	body.setPosition(206.0f, 206.0f);
+	body.setOrigin(body.getSize() / 2.0f);
 
 }
 
@@ -60,9 +61,7 @@ void Player::Move(float deltaTime) {
 	{
 		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
 
-
 			mySound.SFX();
-
 		}
 		std::cout << "Move Up" << std::endl;
 		movement.y -= speed + deltaTime;

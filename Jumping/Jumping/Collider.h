@@ -10,7 +10,9 @@ public:
 
 	bool CheckCollision(Collider & other, float push);
 	sf::Vector2f GetPosition() { return body.getPosition(); }
-	sf::Vector2f GetHalfSize() { return body.getSize() / 2.0f; }
+	sf::Vector2f GetHalfSize() { return sf::Vector2f(body.getSize() / 2.0f); }
+	sf::FloatRect getBounds() { return body.getLocalBounds(); }
+
 private:
 	sf::RectangleShape& body;
 };

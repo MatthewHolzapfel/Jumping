@@ -1,5 +1,5 @@
 #include "Collider.h"
-
+#include <iostream>
 
 
 Collider::Collider(sf::RectangleShape& body):
