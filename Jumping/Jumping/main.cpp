@@ -54,13 +54,12 @@ int main()
 			
 
 			if (event.type == sf::Event::Closed)
-				window.close();
+				return 0;
 		}
 
 		Collider playerCollRect = player.GetCollider();
 		player.Move(deltaTime);
 		
-
 		platform1.GetCollider().CheckCollision(playerCollRect, 0.5f);
 		platform2.GetCollider().CheckCollision(playerCollRect, 0.5f);
 		
