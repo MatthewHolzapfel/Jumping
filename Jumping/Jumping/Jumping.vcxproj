@@ -132,12 +132,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Custom Transform.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Jumping.cpp" />
     <ClCompile Include="Keyboard Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Scene Graph.cpp" />
     <ClCompile Include="SoundEffects.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -145,10 +147,12 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="HardwareCheck.h" />
     <ClInclude Include="Jumping.h" />
     <ClInclude Include="Keyboard Input.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Scene Graph.h" />
     <ClInclude Include="Single.h" />
     <ClInclude Include="SoundEffects.h" />

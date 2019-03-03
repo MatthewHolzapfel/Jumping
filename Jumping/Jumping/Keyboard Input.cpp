@@ -7,12 +7,17 @@
 
 using namespace std;
 
-sf::Event event;
-Input::Input() {
+//sf::Event event;
+Player::Player( float speed)
+{
+	this->speed = speed;
+	body.setSize(sf::Vector2f(100.0f, 150.0f));
+	body.setFillColor(sf::Color::Green);
+	body.setPosition(206.0f, 206.0f);
 
 }
 
-void Input::jump() {
+void Player::Jump() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
@@ -21,10 +26,11 @@ void Input::jump() {
 
 }
 
-void Input::move(sf::RectangleShape *s) {
+void Player::Move(float deltaTime) {
 
 	SoundEffects mySound;
 	mySound.SetSoundBuffer("Walking.wav");
+	sf::Vector2f movement(0.0f, 0.0f);
 	
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
@@ -35,7 +41,7 @@ void Input::move(sf::RectangleShape *s) {
 			
 		}
 		std::cout << "Move Left" << std::endl;
-		s->move(sf::Vector2f(-2.5f, 0.0));
+		movement.x -= speed + deltaTime;
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -47,7 +53,7 @@ void Input::move(sf::RectangleShape *s) {
 
 		}
 		std::cout << "Move Right" << std::endl;
-		s->move(sf::Vector2f(2.5f, 0.0));
+		movement.x += speed + deltaTime; 
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -59,7 +65,7 @@ void Input::move(sf::RectangleShape *s) {
 
 		}
 		std::cout << "Move Up" << std::endl;
-		s->move(sf::Vector2f(0.0, -2.5));
+		movement.y -= speed + deltaTime;
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -71,12 +77,19 @@ void Input::move(sf::RectangleShape *s) {
 
 		}
 		std::cout << "Move Down" << std::endl;
-		s->move(sf::Vector2f(0.0, 2.5f));
+		movement.y += speed + deltaTime;
 		
 	}
+
+	body.move(movement);
 }
 
-Input::~Input() {
+void Player::Draw(sf::RenderWindow& window)
+{
+	window.draw(body);
+}
+
+Player::~Player() {
 
 }
 	
