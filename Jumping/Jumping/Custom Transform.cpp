@@ -1,5 +1,4 @@
-#include <SFML/Graphics/Transform.hpp>
-
+/*
 
 #include "stdafx.h"
 #include <iostream>
@@ -7,8 +6,8 @@
 
 using namespace std;
 
-int transform() {
-	//sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+int main() {
+	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 	sf::Transform t1 = sf::Transform::Identity;
 
 	// a rotation transform
@@ -29,6 +28,5 @@ int transform() {
 	t.translate(-10, 50);
 	t.scale(0.5f, 0.75f);
 
-	//transform.draw(entity, transform);
-	return 0; 
-}  
+	window.draw(entity, transform);
+}  */

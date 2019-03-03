@@ -2,48 +2,12 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 #include "Window.h"
-#include "Music.h"
-#include "Keyboard Input.h"
 #include <SFML/Audio.hpp>
 
 int main()
 {
-	if (Jumping::Instance()->Start())
-		Jumping::Instance()->Open();
-
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML");
-
-	Music myMusic;
-
-	myMusic.PlayMusic("MarioBGM.ogg");
-
-	while (window.isOpen())
-	{
-		
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-		Input myInput;
-			myInput.jump();
-
-			if (event.type == sf::Event::Closed)
-				window.close();
-
-
-			
-	    }
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-
-
-		
-	}
-
-	int a;
-	std::cin >> a;
+	if (!Jumping::Instance()->Start())
+		std::cout << "Failed to meet system requirements. Press enter to close." << std::endl;
+	std::cin.get();
 	return 0;
 }

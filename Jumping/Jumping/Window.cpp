@@ -1,22 +1,38 @@
 #include "Window.h"
 #include <SFML/Graphics/Texture.hpp>	
+#include "Music.h"
+#include "Jumping.h"
 #include <iostream>
+
 Window::Window()
 {}
 
 void Window::Initialize(int _width, int _height)
 {
-	//window = new sf::RenderWindow (sf::VideoMode(_width, _height), "Jump!");
-	/*sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);*/
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(_width, _height), "SFML");
 
-	//sf::Texture test;
-	//if (!test.loadFromFile("splashscreen.png"))
-	//	std::cout << "ERROR";
-	//sf::Sprite sprite;
-	//sprite.setTexture(test);
-	//// Draw the textured sprite
-	//window->draw(sprite);
+	Music myMusic;
+
+	myMusic.PlayMusic("MarioBGM.ogg");
+
+	while (window.isOpen())
+	{
+
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+		}
+
+		window.clear();
+		window.draw(shape);
+		window.display();
+	}
 }
 
 sf::RenderWindow* Window::GetWindow() const

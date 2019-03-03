@@ -2,8 +2,8 @@
 #include "Jumping.h"
 #include "HardwareCheck.h"
 #include "Window.h"
-#include <iostream>
 #include "Timer.h"
+#include <iostream>
 
 
 Jumping::~Jumping()
@@ -13,11 +13,10 @@ Jumping::~Jumping()
 
 void Jumping::Open()
 {
-	window = Window::Instance();
-	window->Initialize(200, 200);
 	Timer timer;
-	timer.Start();
-	
+	window = Window::Instance();
+	window->Initialize(600, 600);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		std::cout << "Jump Player" << std::endl;
@@ -36,17 +35,8 @@ void Jumping::Open()
 }
 
 Jumping::Jumping()
-{
-	//Starting up engine
-}
+{}
 
-/**
-	Checks if an instance of the engine is already running,
-	performs various spec checks and
-	initializes various components of the Engine.
-
-	@return Returns the success value of initialization.
- */
 bool Jumping::Start()
 {
 	if (!CheckSystemRequirements())
@@ -56,14 +46,6 @@ bool Jumping::Start()
 	return true;
 }
 
-
-/**
-	Creates an instance of the system checker and uses it to
-	checks if the user's system has the required hardware/software capabilities
-	to run the program.
-
-	@return Returns true if system check passes.
- */
 bool Jumping::CheckSystemRequirements()
 {
 	HardwareCheck hardwareCheck;
