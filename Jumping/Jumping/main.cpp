@@ -13,8 +13,13 @@ using namespace std;
 
 int main()
 {
-	if (Jumping::Instance()->Start())
-		Jumping::Instance()->Open();
+	if (!Jumping::Instance()->Start())
+	{
+		std::cout << "Failed to meet system requirements. Press enter to close." << std::endl;
+		std::cin.get();
+		return 0;
+	}
+	
 
 	sf::RenderWindow window(sf::VideoMode(1000, 600), "SFML");
 	
