@@ -2,6 +2,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "Single.h"
+#include "Music.h"
+#include "Platform.h"
+#include "Keyboard Input.h"
+#include <SFML/Audio.hpp>
+#include "SoundEffects.h"
 
 class Window : public Single<Window>
 {
