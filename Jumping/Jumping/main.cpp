@@ -17,5 +17,6 @@ int main()
 	system("CLS");
 	cout << "Press 'Enter' to close." << endl;
 	cin.get();
+
 	return 0;
 }
