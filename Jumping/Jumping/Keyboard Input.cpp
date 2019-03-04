@@ -33,7 +33,7 @@ void Player::Move(float deltaTime) {
 	mySound.SetSoundBuffer("Walking.wav");
 	sf::Vector2f movement(0.0f, 0.0f);
 	
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)|| sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
 
@@ -45,7 +45,7 @@ void Player::Move(float deltaTime) {
 		movement.x -= speed + deltaTime;
 		
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
 
@@ -57,7 +57,7 @@ void Player::Move(float deltaTime) {
 		movement.x += speed + deltaTime; 
 		
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)||sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
 
@@ -67,7 +67,7 @@ void Player::Move(float deltaTime) {
 		movement.y -= speed + deltaTime;
 		
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)|| sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
 
