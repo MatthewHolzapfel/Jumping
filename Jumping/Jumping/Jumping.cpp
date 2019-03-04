@@ -14,24 +14,8 @@ Jumping::~Jumping()
 void Jumping::Open()
 {
 	window = Window::Instance();
-	window->Initialize(200, 200);
 	Timer timer;
-	timer.Start();
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		std::cout << "Jump Player" << std::endl;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))
-	{
-		std::cout << "Move right Player" << std::endl;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))
-	{
-		std::cout << "Move left Player" << std::endl; 
-	}
+	window->Initialize(1000, 600);
 
 }
 
