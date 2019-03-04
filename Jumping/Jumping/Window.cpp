@@ -77,6 +77,7 @@ void Window::Initialize(int width, int height)
 			{
 				splashScreen = false;
 				myMusic.PlayMusic("MarioBGM.ogg");
+				clock.restart();
 			}
 
 		}
