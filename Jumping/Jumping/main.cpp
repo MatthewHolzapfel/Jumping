@@ -1,42 +1,22 @@
 #include "Jumping.h"
 #include <iostream>
 #include "SFML/Graphics.hpp"
-#include "Window.h"
-#include "Music.h"
-#include <SFML/Audio.hpp>
+
+
+using namespace std;
 
 int main()
 {
-	if (Jumping::Instance()->Start())
-		Jumping::Instance()->Open();
-
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML");
-
-	Music myMusic;
-
-	myMusic.PlayMusic("MarioBGM.ogg");
-	
-	while (window.isOpen())
+	if (!Jumping::Instance()->Start())
 	{
-		
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
+		cout << "Failed to meet system requirements. Press enter to close." << endl;
+		cin.get();
+		return 0;
 	}
-
-
 	
+	system("CLS");
+	cout << "Press 'Enter' to close." << endl;
+	cin.get();
 
-	int a;
-	std::cin >> a;
 	return 0;
 }
