@@ -7,13 +7,15 @@ Window::Window()
 
 void Window::Initialize(int width, int height)
 {
+	bool splashScreen = true;
 	//Messy 'splash screen window'
 	sf::RenderWindow sWindow(sf::VideoMode(300, 300), "Freemium Games presents...");
 	sf::Texture Splash;
 	Splash.loadFromFile("Freemium.png");
 	sf::Sprite sSprite(Splash);
-
-	while (sWindow.isOpen())
+	
+	
+	/*while (sWindow.isOpen())
 	{
 
 		sf::Event event;
@@ -30,7 +32,7 @@ void Window::Initialize(int width, int height)
 		sWindow.draw(sSprite);
 		sWindow.display();
 
-	}
+	}*/
 
 	sf::RenderWindow window(sf::VideoMode(width, height), "Jump Over Robots!");
 
@@ -43,6 +45,7 @@ void Window::Initialize(int width, int height)
 	sf::Texture background;
 	background.loadFromFile("Background.png");
 	sf::Sprite sprite(background);
+	sSprite.setOrigin(150, 150);
 	sprite.scale(sf::Vector2f(0.5f, 0.5f));
 
 
@@ -50,9 +53,8 @@ void Window::Initialize(int width, int height)
 	Platform platform2(nullptr, sf::Vector2f(200.0f, 100.0f), sf::Vector2f(400.0f, 400.0f));
 
 	Music myMusic;
-	myMusic.PlayMusic("MarioBGM.ogg");
-
-
+	
+	sSprite.setPosition(sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f));
 
 	while (window.isOpen())
 	{
@@ -71,30 +73,47 @@ void Window::Initialize(int width, int height)
 				return;
 			}
 
+			if (event.type == sf::Event::KeyPressed && splashScreen)
+			{
+				splashScreen = false;
+				myMusic.PlayMusic("MarioBGM.ogg");
+			}
+
 		}
 
-		Collider playerCollRect = player.GetCollider();
-		player.Move(deltaTime);
+		if (splashScreen)
+		{
+			//window.clear();
+			window.draw(sSprite);
+			window.display();
+		}
 
-		platform1.GetCollider().CheckCollision(playerCollRect, 0.5f);
-		platform2.GetCollider().CheckCollision(playerCollRect, 0.5f);
+		else
+		{
 
-		window.clear();
+			Collider playerCollRect = player.GetCollider();
+			player.Move(deltaTime);
+
+			platform1.GetCollider().CheckCollision(playerCollRect, 0.5f);
+			platform2.GetCollider().CheckCollision(playerCollRect, 0.5f);
+
+			window.clear();
 
 
-		window.draw(sprite);
+			window.draw(sprite);
 
-		player.Draw(window);
+			player.Draw(window);
 
-		platform1.Draw(window);
-		platform2.Draw(window);
+			platform1.Draw(window);
+			platform2.Draw(window);
 
-		window.display();
+			window.display();
 
-		sf::Time elapsed = clock.getElapsedTime();
-		if (elapsed.asSeconds() < 1.0f)
-			std::cout << elapsed.asSeconds() << std::endl;
+			sf::Time elapsed = clock.getElapsedTime();
+			if (elapsed.asSeconds() < 1.0f)
+				std::cout << elapsed.asSeconds() << std::endl;
 
+		}
 	}
 }
 
