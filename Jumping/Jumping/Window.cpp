@@ -7,7 +7,32 @@ Window::Window()
 
 void Window::Initialize(int width, int height)
 {
-	sf::RenderWindow window(sf::VideoMode(width, height), "SFML");
+	//Messy 'splash screen window'
+	sf::RenderWindow sWindow(sf::VideoMode(300, 300), "Freemium Games presents...");
+	sf::Texture Splash;
+	Splash.loadFromFile("Freemium.png");
+	sf::Sprite sSprite(Splash);
+
+	while (sWindow.isOpen())
+	{
+
+		sf::Event event;
+		while (sWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed)
+			{
+				sWindow.close();
+				break;
+			}
+
+		}
+		sWindow.clear();
+		sWindow.draw(sSprite);
+		sWindow.display();
+
+	}
+
+	sf::RenderWindow window(sf::VideoMode(width, height), "Jump Over Robots!");
 
 	Player player(0.5f);
 
