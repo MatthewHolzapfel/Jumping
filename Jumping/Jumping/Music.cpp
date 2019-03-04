@@ -10,17 +10,18 @@ using namespace std;
  Music::Music() {
 	
 	
-	//music.setVolume(50);
-	//music.setLoop(true);
+	
 	
 }
 
  void Music::PlayMusic(string file) {
-	 //sf::Music music;
+
 	 if (!music.openFromFile(file)) {
 		 cout << "Music Error";
 	 }
 	 music.play();
+	 music.setVolume(25);
+	 music.setLoop(true);
  }
 Music::~Music()
 {

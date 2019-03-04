@@ -14,9 +14,9 @@ Jumping::~Jumping()
 void Jumping::Open()
 {
 	window = Window::Instance();
-	window->Initialize(200, 200);
 	Timer timer;
-	timer.Start();
+	window->Initialize(1000, 600);
+
 }
 
 Jumping::Jumping()
