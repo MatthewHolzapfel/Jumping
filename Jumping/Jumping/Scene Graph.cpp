@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <functional>
 /*
 SceneNode::SceneNode(Category::Type category)
 	: mChildren()
