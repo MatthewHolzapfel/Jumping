@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include "Category.hpp"
 #include <SFML/System/NonCopyable.hpp>
@@ -12,15 +11,34 @@
 #include <set>
 #include <memory>
 #include <utility>
+#include <functional>
 
-struct Command;
+
+
+struct Command
+{
+	Command();
+	std::function<void(SceneNode&,sf::Time)> action;
+	unsigned int category;
+	//action()
+	//SceneNode&
+};
 class CommandQueue;
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {
 public:
+	Command commmand;
+
 	typedef std::unique_ptr<SceneNode> Ptr;
 	typedef std::pair<SceneNode*, SceneNode*> Pair;
+	enum Action {
+		MoveLeft,
+		MoveRight,
+	};
+
+	
+	
 
 
 public:
@@ -43,6 +61,7 @@ public:
 	virtual sf::FloatRect	getBoundingRect() const;
 	virtual bool			isMarkedForRemoval() const;
 	virtual bool			isDestroyed() const;
+	
 
 
 private:
@@ -53,7 +72,7 @@ private:
 	virtual void			drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 	void					drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
 	void					drawBoundingRect(sf::RenderTarget& target, sf::RenderStates states) const;
-
+	static bool isRealtimeAction(Action action);
 
 private:
 	std::vector<Ptr>		mChildren;
