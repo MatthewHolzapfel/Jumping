@@ -1,5 +1,5 @@
 #include "Rectangle.h"
-#include "Resource Holder.h"
+#include "ResourceHolder.h"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
@@ -10,11 +10,10 @@ Textures::ID toTextureID(Rectangle::Type type)
 	{
 	case Rectangle::Ground:
 		return Textures::Rectangle;
+		break;
+	default:
+		return Textures::Default;
 	}
-}
-
-Rectangle::Rectangle(Type type)
-{
 }
 
 Rectangle::Rectangle(Type type, const TextureHolder& textures) : mType(type), mSprite(textures.get(toTextureID(type)))

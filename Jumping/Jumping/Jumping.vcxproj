@@ -140,25 +140,37 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="ResourceHolder.cpp" />
     <ClCompile Include="Scene Graph.cpp" />
     <ClCompile Include="SoundEffects.cpp" />
+    <ClCompile Include="SpriteNode.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Category.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandQueue.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="HardwareCheck.h" />
     <ClInclude Include="Jumping.h" />
     <ClInclude Include="Keyboard Input.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="ResourceHolder.h" />
+    <ClInclude Include="ResourceID.h" />
     <ClInclude Include="Scene Graph.h" />
     <ClInclude Include="Single.h" />
     <ClInclude Include="SoundEffects.h" />
+    <ClInclude Include="SpriteNode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

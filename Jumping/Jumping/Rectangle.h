@@ -1,18 +1,22 @@
 #pragma once
-#include "Scene Graph.h"
+#include "Entity.h"
+#include "Command.h"
+#include "ResourceID.h"
+#include <SFML/Graphics/Sprite.hpp>
 
 class Rectangle : public Entity //inherits indirectly SceneNode
 {
-
-
 public:
 	enum Type
 	{
 		Ground,
 		Wall,
 	};
-	explicit Rectangle(Type type);
-	Rectangle(Type type, const TextureHolder & textures);
+public:
+	Rectangle(Type type, const TextureHolder& textures);
+	virtual unsigned int getCategory() const;
+
+private:
 	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:

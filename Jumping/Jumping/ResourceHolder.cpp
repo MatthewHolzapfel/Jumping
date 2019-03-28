@@ -1,4 +1,4 @@
-#include "Resource Holder.h"
+#include "ResourceHolder.h"
 #include <string>
 
 template <typename Resource, typename Identifier>
