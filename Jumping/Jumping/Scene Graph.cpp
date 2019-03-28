@@ -1,15 +1,49 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
-
+#include "SFML\Graphics.hpp"
+#include "Resource Holder.h"
 #include "Scene Graph.h"
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <functional>
 
 
 //struct Command;
 //class CommandQueue;
+
+//Texture Holder
+
+TextureHolder textureholder;
+
+sf::Texture& TextureHolder::get(Textures::ID id)
+{
+	auto found = mTextureMap.find(id);
+	return *found->second;
+}
+
+void TextureHolder::load(Textures::ID id, const std::string& filename)
+{
+	std::unique_ptr<sf::Texture> texture(new sf::Texture());
+	texture->loadFromFile(filename);
+	mTextureMap.insert(std::make_pair(id, std::move(texture)));
+}
+
+//Resource Holder
+//template <typename Resource, typename Identifier>
+//void ResourceHolder<Resource, Identifier>::load(Identifier id,
+//	const std::string& filename)
+//{
+//	std::unique_ptr<Resource> resource(new Resource());
+//	if (!resource->loadFromFile(filename))
+//		throw std::runtime_error("ResourceHolder::load - Failed to load " + filename);
+//			auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
+//	assert(inserted.second);
+//}
+
+
+
 
 
 SceneNode::SceneNode(Category::Type category)
@@ -28,7 +62,9 @@ void SceneNode::attachChild(Ptr child)
 
 SceneNode::Ptr SceneNode::detachChild(const SceneNode& node)
 {
-	auto found = std::find_if(mChildren.begin(), mChildren.end(), [&](Ptr& p) { return p.get() == &node; });
+	//auto found = std::find_if(mChildren.begin(), mChildren.end(), [&](Ptr& p) { return p.get() == &node; });
+	auto found = std::find_if(mChildren.begin(), mChildren.end(),
+		[&](Ptr& p) -> bool { return p.get() == &node; });
 	assert(found != mChildren.end());
 
 	Ptr result = std::move(*found);
@@ -37,10 +73,16 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node)
 	return result;
 }
 
-void SceneNode::updateCurrent(sf::Time dt, CommandQueue& commands)
+void SceneNode::update(sf::Time dt, CommandQueue& commands)
 {
 	updateCurrent(dt, commands);
 	updateChildren(dt, commands);
+}
+
+void SceneNode::updateCurrent(sf::Time dt, CommandQueue& commands)
+{
+	//updateCurrent(dt, commands);
+	//updateChildren(dt, commands);
 }
 
 
@@ -58,6 +100,13 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 	//Draw node and children with changed transform
 	drawCurrent(target, states);
+	for (auto itr = mChildren.begin();
+		itr != mChildren.end(); ++itr)
+	{
+		(*itr)->draw(target, states);
+	}
+
+
 	drawChildren(target, states); 
 
 
@@ -88,6 +137,7 @@ void SceneNode::drawBoundingRect(sf::RenderTarget& target, sf::RenderStates) con
 
 sf::Vector2f SceneNode::getWorldPosition() const
 {
+	/*mWorldView.move(0.f, mScrollSpeed * dt.asSeconds());*/
 	return getWorldTransform() * sf::Vector2f();
 }
 
@@ -171,6 +221,116 @@ float distance(const SceneNode& lhs, const SceneNode& rhs)
 	return sqrt(pow(lhs.getWorldPosition().x - rhs.getWorldPosition().x,2)+
 	pow(lhs.getWorldPosition().y - rhs.getWorldPosition().y,2));
 }
+
+///Entity 
+
+void Entity::setVelocity(sf::Vector2f velocity)
+{
+	mVelocity = velocity;
+}
+
+void Entity::setVelocity(float vx, float vy)
+{
+	mVelocity.x = vx;
+	mVelocity.y = vy;
+}
+sf::Vector2f Entity::getVelocity() const
+{
+	return mVelocity;
+}
+
+
+
+
+
+
+
+///World script
+void World::loadTextures()
+{
+	mTextures.load(Textures::Rectangle, "Jumping/splashscreen.png");
+}
+
+void World::update(sf::Time dt)
+{
+	mWorldView.move(0.f, mScrollSpeed * dt.asSeconds());
+	sf::Vector2f position = mPlayerRectangle->getWorldPosition();
+	sf::Vector2f velocity = mPlayerRectangle->getVelocity();
+	if (position.x <= mWorldBounds.left + 150
+		|| position.x >= mWorldBounds.left + mWorldBounds.width - 150)
+	{
+		velocity.x = -velocity.x;
+		mPlayerRectangle->setVelocity(velocity);
+	}
+	mSceneGraph.update(dt);
+}
+
+void World::draw()
+{
+	mWindow.setView(mWorldView);
+	mWindow.draw(mSceneGraph);
+}
+
+//building the scene
+int main()
+{
+	try
+	{
+		Game game;
+		game.run();
+	}
+
+	catch (std::exception& e)
+	{
+		std::_Count_pr << "n\nEXCEPTION: " << e.what() << std::endl; 
+	}
+
+	mWindow.clear();
+	mWorld.draw();
+	mWindow.setView(mWindow.getDefaultView());
+	mWindow.draw(mStatisticsText);
+	mWindow.display();
+}
+void World::buildScene() {
+
+
+	for (std::size_t i = 0; i < LayerCount; ++i)
+	{
+		SceneNode::Ptr layer(new SceneNode());
+		mSceneLayers[i] = layer.get();
+
+		mSceneGraph.attachChild(std::move(layer));
+	}
+
+	sf::Texture& texture = mTextures.get(Textures::Rectangle);
+	sf::IntRect textureRect(mWorldBounds);
+	texture.setRepeated(true);
+}
+
+
+
+
+void SpriteNode() {
+	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(texture, textureRect));
+	backgroundSprite->setPosition(
+		mWorldBounds.left,
+		mWorldBounds.top);
+	mSceneLayers[Background]
+		->attachChild(std::move(backgroundSprite));
+
+	std::unique_ptr<Rectangle> leader(
+		new Rectangle(Rectangle::Rectangle, mTextures));
+	mPlayerRectangle = leader.get();
+	mPlayerRectangle->setPosition(mSpawnPosition);
+	mPlayerRectangle->setVelocity(40.f, mScrollSpeed);
+	mSceneLayers[Rectangle]->attachChild(std::move(leader));
+
+	std::unique_ptr<Rectangle> leftEscort(
+		new Rectangle(Rectangle::Rectangle, mTextures));
+	leftEscort->setPosition(-80.f, 50.f);
+	mPlayerRectangle->attachChild(std::move(leftEscort));
+}
+
 
 
 ///ATTEMPT 2^^^^
