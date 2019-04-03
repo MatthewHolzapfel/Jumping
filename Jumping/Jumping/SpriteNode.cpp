@@ -1,12 +1,13 @@
 #include "SpriteNode.h"
+#include "Window.h"
 #include <SFML/Graphics/RenderTarget.hpp>
 
 SpriteNode::SpriteNode(const sf::Texture& texture) : mSprite(texture)
 {
-
+	
 }
 
-SpriteNode::SpriteNode(const sf::Texture& texture, const sf::IntRect& textureRect)
+SpriteNode::SpriteNode(const sf::Texture& texture, const sf::IntRect& textureRect) : mSprite(texture, textureRect)
 {
 
 }

@@ -8,8 +8,6 @@
 #include "SFML\Graphics.hpp"
 #include "Category.h"
 #include "Rectangle.h"
-#include "Scene Graph.h"
-
 #include <vector>
 #include <set>
 #include <memory>
@@ -28,17 +26,10 @@ class CommandQueue;
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {
 public:
+//	SceneNode();
 
 	typedef std::unique_ptr<SceneNode> Ptr;
 	typedef std::pair<SceneNode*, SceneNode*> Pair;
-
-	enum Action {
-		MoveLeft,
-		MoveRight,
-	};
-
-public:
-	explicit SceneNode(Category::Type category = Category::None);
 
 	void attachChild(Ptr child);
 	Ptr detachChild(const SceneNode& node);
@@ -51,6 +42,16 @@ public:
 	void onCommand(const Command& command, sf::Time dt);
 	virtual unsigned int getCategory() const;
 
+
+	enum Action {
+		MoveLeft,
+		MoveRight,
+	};
+
+public:
+	SceneNode(Category::Type category = Category::None);
+
+	
 	void checkSceneCollision(SceneNode& sceneGraph, std::set<Pair>& collisionPairs);
 	void checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs);
 	void removeWrecks();
@@ -76,11 +77,11 @@ private:
 };
 
 
-bool collision(const SceneNode& lhs, const SceneNode& rhs);
-float distance(const SceneNode& lhs, const SceneNode& rhs); 
-
-template <typename Resource, typename Identifier>
-class ResourceHolder;
+//bool collision(const SceneNode& lhs, const SceneNode& rhs);
+//float distance(const SceneNode& lhs, const SceneNode& rhs); 
+//
+//template <typename Resource, typename Identifier>
+//class ResourceHolder;
 
  /*
 class GameObject {

@@ -10,7 +10,7 @@ namespace Textures
 {
 	enum ID
 	{
-		Rectangle,
+		Wall,
 		Default,
 	};
 }
@@ -18,5 +18,3 @@ namespace Textures
 // Forward declaration and a few type definitions
 template <typename Resource, typename Identifier>
 class ResourceHolder;
-
-typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;

@@ -153,14 +153,14 @@ void SceneNode::checkSceneCollision(SceneNode& sceneGraph, std::set<Pair>& colli
 		checkSceneCollision(*child, collisionPairs);
 }
 
-void SceneNode::checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs)
-{
-	if (this != &node && collision(*this, node) && !isDestroyed() && !node.isDestroyed())
-		collisionPairs.insert(std::minmax(this, &node));
-
-	for(Ptr& child : mChildren)
-		child->checkNodeCollision(node, collisionPairs);
-}
+//void SceneNode::checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs)
+//{
+//	if (this != &node && collision(*this, node) && !isDestroyed() && !node.isDestroyed())
+//		collisionPairs.insert(std::minmax(this, &node));
+//
+//	for(Ptr& child : mChildren)
+//		child->checkNodeCollision(node, collisionPairs);
+//}
 
 void SceneNode::removeWrecks()
 {

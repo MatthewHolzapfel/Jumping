@@ -9,6 +9,7 @@ public:
 	void accelerate(sf::Vector2f velocity);
 	void accelerate(float vx, float vy);
 	sf::Vector2f getVelocity() const;
+	sf::Vector2f getPosition() const;
 
 private:
 	virtual void updateCurrent(sf::Time dt);
