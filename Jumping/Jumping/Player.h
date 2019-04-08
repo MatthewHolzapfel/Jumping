@@ -10,18 +10,19 @@ class Player
 public:
 	Player(float speed);
 	~Player();
-	void Jump();
+	bool Jump();
 	void Move(float deltaTime);
 	bool isPlaying = false;
 	bool bottom = false;
 	SoundEffects mySound;
 	void Draw(sf::RenderWindow& window);
 
+	float fallSpeed;
+
 	sf::Vector2f GetPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
 private:
 	sf::RectangleShape body;
 	float speed;
-	
 	
 };
