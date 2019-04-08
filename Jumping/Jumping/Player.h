@@ -8,11 +8,12 @@
 class Player
 {
 public:
-	Player( float speed);
+	Player(float speed);
 	~Player();
 	void Jump();
 	void Move(float deltaTime);
 	bool isPlaying = false;
+	bool bottom = false;
 	SoundEffects mySound;
 	void Draw(sf::RenderWindow& window);
 

@@ -28,23 +28,24 @@ void Window::Initialize(int width, int height)
 
 	sf::Texture danger;
 	danger.loadFromFile("Danger.jpg");
-	
+
+	Platform platformList[25] = {
+	Platform(&building, sf::Vector2f(150.0f, 100.0f), sf::Vector2f(50.0f, 600.0f), 500.0f, false),
+	Platform(&building, sf::Vector2f(150.0f, 100.0f), sf::Vector2f(350.0f, 600.0f), 500.0f, false),
+	Platform(&building, sf::Vector2f(50.0f, 300.0f), sf::Vector2f(550.0f, 600.0f), 500.0f, false),
+	Platform(&building, sf::Vector2f(50.0f, 300.0f), sf::Vector2f(650.0f, 500.0f), 500.0f, false),
+	Platform(&building, sf::Vector2f(50.0f, 300.0f), sf::Vector2f(750.0f, 600.0f), 500.0f, false),
+
+	Platform(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(200.0f, 500.0f), 500.0f, false),
+	Platform(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(350.0f, 400.0f), 500.0f, false),
+	Platform(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(450.0f, 500.0f), 500.0f, false),
+	Platform(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(950.0f, 300.0f), 500.0f, false),
+
+	Platform(&danger, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(850.0f, 400.0f), 0.5f, true)
+	};
 
 
-	Platform platform1(&building, sf::Vector2f(150.0f, 100.0f), sf::Vector2f(50.0f, 600.0f));
-	Platform platform2(&building, sf::Vector2f(150.0f, 100.0f), sf::Vector2f(350.0f, 600.0f));
 
-	Platform platform3(&building, sf::Vector2f(50.0f, 300.0f), sf::Vector2f(550.0f, 600.0f));
-	Platform platform4(&building, sf::Vector2f(50.0f, 300.0f), sf::Vector2f(650.0f, 500.0f));
-	Platform platform5(&building, sf::Vector2f(50.0f, 300.0f), sf::Vector2f(750.0f, 600.0f));
-
-	Platform platform6(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(200.0f, 500.0f));
-	Platform platform7(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(350.0f, 400.0f));
-	Platform platform8(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(450.0f, 500.0f));
-
-	Platform platform9(&danger, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(850.0f, 400.0f));
-	Platform platform10(&steelBeam, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(950.0f, 300.0f));
-	
 
 
 	Music myMusic;
@@ -72,21 +73,16 @@ void Window::Initialize(int width, int height)
 		}
 
 		Collider playerCollRect = player.GetCollider();
+		
+		for (int i = 0; i < sizeof(platformList)/sizeof(Platform); i++)
+		{
+			if (platformList[i].GetCollider().CheckCollision(playerCollRect, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+		
 		player.Move(deltaTime);
-
-		platform1.GetCollider().CheckCollision(playerCollRect, 9.5f);
-		platform2.GetCollider().CheckCollision(playerCollRect, 9.5f);
-
-		platform3.GetCollider().CheckCollision(playerCollRect, 9.5f);
-		platform4.GetCollider().CheckCollision(playerCollRect, 9.5f);
-		platform5.GetCollider().CheckCollision(playerCollRect, 9.5f);
-
-		platform6.GetCollider().CheckCollision(playerCollRect, 9.5f);
-		platform7.GetCollider().CheckCollision(playerCollRect, 9.5f);
-		platform8.GetCollider().CheckCollision(playerCollRect, 9.5f);
-
-		platform9.GetCollider().CheckCollision(playerCollRect, 0.5f);
-		platform10.GetCollider().CheckCollision(playerCollRect, 9.5f);
 
 		window.clear();
 
@@ -95,20 +91,10 @@ void Window::Initialize(int width, int height)
 
 		player.Draw(window);
 
-		platform1.Draw(window);
-		platform2.Draw(window);
-
-
-		platform3.Draw(window);
-		platform4.Draw(window);
-		platform5.Draw(window);
-
-		platform6.Draw(window);
-		platform7.Draw(window);
-		platform8.Draw(window);
-
-		platform9.Draw(window);
-		platform10.Draw(window);
+		for (int i = 0; i < sizeof(platformList)/sizeof(Platform); i++)
+		{
+			platformList[i].Draw(window);
+		}
 
 		window.display();
 

@@ -1,17 +1,20 @@
 #include "Platform.h"
 
-
-
-Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position)
+Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, float resistance, bool movable)
 {
 	body.setSize(size);
 	body.setOrigin(size / 2.0f);
 	body.setTexture(texture);
 	body.setPosition(position);
+	isMovable = movable;
 }
 
 
 Platform::~Platform()
+{
+}
+
+Platform::Platform()
 {
 }
 
