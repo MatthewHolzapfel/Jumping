@@ -26,7 +26,7 @@ bool Collider::bottomCollider(Collider & other)
 	return false;
 }
 
-bool Collider::CheckCollision(Collider & other, float push, bool movable)
+bool Collider::CheckCollision(Collider & other, sf::Vector2f& direction, float push, bool movable)
 {
 	sf::Vector2f otherPosition = other.GetPosition();
 	sf::Vector2f otherHalfSize = other.GetHalfSize();
@@ -52,11 +52,18 @@ bool Collider::CheckCollision(Collider & other, float push, bool movable)
 			{
 				Move(intersectX * (1.0f - push), 0.0f);
 				other.Move(-intersectX * push, 0.0f);
+
+				direction.x = 1.0f;
+				direction.y = 0.0f;
+
 			}
 			else
 			{
 				Move(-intersectX * (1.0f - push), 0.0f);
 				other.Move(intersectX * push, 0.0f);
+
+				direction.x = -1.0f;
+				direction.y = 0.0f;
 			}
 		}
 		else
@@ -66,11 +73,17 @@ bool Collider::CheckCollision(Collider & other, float push, bool movable)
 			{
 				Move(0.0f,intersectY * (1.0f - push));
 				other.Move(0.0f, -intersectY * push);
+
+				direction.x = 0.0f;
+				direction.y = 1.0f;
 			}
 			else
 			{
 				Move(0.0f,-intersectY * (1.0f - push));
 				other.Move(0.0f, intersectY * push);
+
+				direction.x = 0.0f;
+				direction.y = -1.0f;
 			}
 		}
 
