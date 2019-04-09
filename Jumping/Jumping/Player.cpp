@@ -21,13 +21,7 @@ Player::Player(float speed, float jumpHeight)
 
 void Player::Jump() {
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump)
-	{
-		std::cout << "Jump Player" << std::endl;
-		canJump = false;
-		velocity.y = -sqrtf(2.0f * 981.0f * jumpHeight);
-
-	}
+	
 
 }
 
@@ -87,42 +81,38 @@ void Player::Move(float deltaTime) {
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-	if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
 
-	mySound.SetSoundBuffer("Walking.wav");
-	mySound.SFX();
+			if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+				mySound.SetSoundBuffer("Walking.wav");
+				mySound.SFX();
+			}
 
+			std::cout << "Move Left" << std::endl;
+			velocity.x -= speed;
 	}
-	std::cout << "Move Left" << std::endl;
-	velocity.x -= speed;
 
-	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-	if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+		if (mySound.sound.getStatus() == sf::Sound::Status::Stopped) {
+			mySound.SetSoundBuffer("Walking.wav");
+			mySound.SFX();
+		}
 
-	mySound.SetSoundBuffer("Walking.wav");
-	mySound.SFX();
-
-	}
 	std::cout << "Move Right" << std::endl;
 	velocity.x += speed;
 
 	}
 	
-	Jump();
+	//Jump();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump)
+	{
+		std::cout << "Jump Player" << std::endl;
+		canJump = false;
+		velocity.y = -sqrtf(2.0f * 981.0f * jumpHeight);
+
+	}
 
 	velocity.y += 981.0f * deltaTime;
-
-
-
-
-
-
-
-
-
-
 
 	//body.move(movement);
 	body.move(velocity*deltaTime);

@@ -9,11 +9,11 @@ void Window::Initialize(int width, int height)
 {
 	sf::RenderWindow window(sf::VideoMode(width, height), "SFML");
 
-	Player player(0.5f, 200.0f);
+	Player player(50.0f, 200.0f);
 
 	sf::Clock clock;
 	Timer timer = Timer();
-	float deltaTime = 0.0f;
+	float deltaTime = 0.01f;//Temporary!
 
 	sf::Texture background;
 	background.loadFromFile("Background.png");
