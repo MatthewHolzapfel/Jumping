@@ -9,11 +9,11 @@ void Window::Initialize(int width, int height)
 {
 	sf::RenderWindow window(sf::VideoMode(width, height), "SFML");
 
-	Player player(0.5f);
+	Player player(50.0f, 30.0f);
 
 	sf::Clock clock;
 	Timer timer = Timer();
-	float deltaTime = 0.0f;
+	float deltaTime = 0.01f;//Temporary!
 
 	sf::Texture background;
 	background.loadFromFile("Background.png");
@@ -60,7 +60,7 @@ void Window::Initialize(int width, int height)
 		while (window.pollEvent(event))
 		{
 
-			Player myInput(1.5f);
+			Player myInput(1.5f, 200.0f);
 			myInput.Jump();
 
 
@@ -73,10 +73,11 @@ void Window::Initialize(int width, int height)
 		}
 
 		Collider playerCollRect = player.GetCollider();
+		sf::Vector2f direction;
 		
 		for (int i = 0; i < sizeof(platformList)/sizeof(Platform); i++)
 		{
-			if (platformList[i].GetCollider().CheckCollision(playerCollRect, platformList[i].resistance, platformList[i].isMovable))
+			if (platformList[i].GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
 			{
 				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
 			}

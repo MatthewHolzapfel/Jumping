@@ -8,7 +8,7 @@
 class Player
 {
 public:
-	Player(float speed);
+	Player(float speed, float jumpHeight);
 	~Player();
 	void Jump();
 	void Move(float deltaTime);
@@ -16,6 +16,7 @@ public:
 	bool bottom = false;
 	SoundEffects mySound;
 	void Draw(sf::RenderWindow& window);
+	void OnCollision(sf::Vector2f direction);
 
 	sf::Vector2f GetPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
@@ -23,5 +24,7 @@ private:
 	sf::RectangleShape body;
 	float speed;
 	
-	
+	sf::Vector2f velocity;
+	bool canJump = true;
+	float jumpHeight;
 };
