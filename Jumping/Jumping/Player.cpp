@@ -27,7 +27,7 @@ void Player::Jump() {
 
 void Player::Move(float deltaTime) {
 	this->bottom = false;
-
+	velocity.y = 0.0f;
 	velocity.x = 0.0f;
 	//sf::Vector2f movement(0.0f, 0.0f);
 	
@@ -109,10 +109,15 @@ void Player::Move(float deltaTime) {
 		std::cout << "Jump Player" << std::endl;
 		canJump = false;
 		velocity.y = -sqrtf(2.0f * 981.0f * jumpHeight);
-
+		//canJump = true;
 	}
+	else {
+		canJump = true;
+		velocity.y = 0.0f;
+	}
+	
 
-	velocity.y += 981.0f * deltaTime;
+	velocity.y += 2.5f * 981.0f * deltaTime;
 
 	//body.move(movement);
 	body.move(velocity*deltaTime);
@@ -142,6 +147,7 @@ void Player::OnCollision(sf::Vector2f direction)
 		else if (direction.y > 0.0f)
 		{
 			velocity.y = 0.0f;
+			canJump = false;
 		}
 
 }

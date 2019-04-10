@@ -9,7 +9,7 @@ void Window::Initialize(int width, int height)
 {
 	sf::RenderWindow window(sf::VideoMode(width, height), "SFML");
 
-	Player player(50.0f, 200.0f);
+	Player player(50.0f, 30.0f);
 
 	sf::Clock clock;
 	Timer timer = Timer();
