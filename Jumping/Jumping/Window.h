@@ -7,6 +7,7 @@
 #include "Player.h"
 #include <SFML/Audio.hpp>
 #include "SoundEffects.h"
+#include "Enemy.h"
 
 class Window : public Single<Window>
 {

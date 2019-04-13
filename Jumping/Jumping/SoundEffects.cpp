@@ -16,7 +16,7 @@ void SoundEffects::SetSoundBuffer(string file) {
 		cout << "SFX Error";
 	}
 	sound.setBuffer(buffer);
-	sound.setVolume(100);
+	sound.setVolume(70);
 	//sound.setLoop(true);
 	
 }

@@ -9,7 +9,7 @@ void Window::Initialize(int width, int height)
 {
 	sf::RenderWindow window(sf::VideoMode(width, height), "SFML");
 
-	Player player(50.0f, 30.0f);
+	
 
 	sf::Clock clock;
 	Timer timer = Timer();
@@ -20,6 +20,10 @@ void Window::Initialize(int width, int height)
 	sf::Sprite sprite(background);
 	sprite.scale(sf::Vector2f(0.53f, 0.55f));
 
+	sf::Texture playerSprite;
+	playerSprite.loadFromFile("BoxBoy.png");
+	Player player(&playerSprite, 50.0f, 70.0f);
+
 	sf::Texture building;
 	building.loadFromFile("Building.jpg");
 
@@ -28,6 +32,16 @@ void Window::Initialize(int width, int height)
 
 	sf::Texture danger;
 	danger.loadFromFile("Danger.jpg");
+
+	sf::Texture enemySprite;
+	enemySprite.loadFromFile("Robot.jpg");
+	
+
+	Enemy enemy1(&enemySprite, sf::Vector2f(200.0f, 500.0f), 10.0f);
+	Enemy enemy2(&enemySprite, sf::Vector2f(350.0f, 400.0f), 10.0f);
+	Enemy enemy3(&enemySprite, sf::Vector2f(450.0f, 500.0f), 10.0f);
+	Enemy enemy4(&enemySprite, sf::Vector2f(640.0f, 350.0f), 10.0f);
+	Enemy enemy5(&enemySprite, sf::Vector2f(350.0f, 600.0f), 10.0f);
 
 	Platform platformList[25] = {
 	Platform(&building, sf::Vector2f(150.0f, 100.0f), sf::Vector2f(50.0f, 600.0f), 500.0f, false),
@@ -60,7 +74,7 @@ void Window::Initialize(int width, int height)
 		while (window.pollEvent(event))
 		{
 
-			Player myInput(1.5f, 200.0f);
+			Player myInput(&playerSprite, 1.5f, 200.0f);
 			myInput.Jump();
 
 
@@ -82,8 +96,53 @@ void Window::Initialize(int width, int height)
 				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
 			}
 		}
+
+		Collider enemyCollRect1 = enemy1.GetCollider();
+		Collider enemyCollRect2 = enemy2.GetCollider();
+		Collider enemyCollRect3 = enemy3.GetCollider();
+		Collider enemyCollRect4 = enemy4.GetCollider();
+		Collider enemyCollRect5 = enemy5.GetCollider();
+
+		sf::Vector2f Edirection;
+
+		for (int i = 0; i < sizeof(platformList) / sizeof(Platform); i++)
+		{
+			if (platformList[i].GetCollider().CheckCollision(enemyCollRect1, Edirection, platformList[i].resistance, platformList[i].isMovable))
+			{
+				enemy1.bottom = platformList[i].GetCollider().bottomCollider(enemyCollRect1);
+			}
+
+			if (platformList[i].GetCollider().CheckCollision(enemyCollRect2, Edirection, platformList[i].resistance, platformList[i].isMovable))
+			{
+				enemy2.bottom = platformList[i].GetCollider().bottomCollider(enemyCollRect2);
+			}
+
+			if (platformList[i].GetCollider().CheckCollision(enemyCollRect3, Edirection, platformList[i].resistance, platformList[i].isMovable))
+			{
+				enemy3.bottom = platformList[i].GetCollider().bottomCollider(enemyCollRect3);
+			}
+
+			if (platformList[i].GetCollider().CheckCollision(enemyCollRect4, Edirection, platformList[i].resistance, platformList[i].isMovable))
+			{
+				enemy4.bottom = platformList[i].GetCollider().bottomCollider(enemyCollRect4);
+			}
+
+			if (platformList[i].GetCollider().CheckCollision(enemyCollRect5, Edirection, platformList[i].resistance, platformList[i].isMovable))
+			{
+				enemy5.bottom = platformList[i].GetCollider().bottomCollider(enemyCollRect5);
+			}
+		}
+
+
+
+
 		
 		player.Move(deltaTime);
+		enemy1.Move(deltaTime);
+		enemy2.Move(deltaTime);
+		enemy3.Move(deltaTime);
+		enemy4.Move(deltaTime);
+		enemy5.Move(deltaTime);
 
 		window.clear();
 
@@ -91,11 +150,20 @@ void Window::Initialize(int width, int height)
 		window.draw(sprite);
 
 		player.Draw(window);
+		enemy1.Draw(window);
+		enemy2.Draw(window);
+		enemy3.Draw(window);
+		enemy4.Draw(window);
+		enemy5.Draw(window);
+		
+		
 
 		for (int i = 0; i < sizeof(platformList)/sizeof(Platform); i++)
 		{
 			platformList[i].Draw(window);
 		}
+
+		
 
 		window.display();
 

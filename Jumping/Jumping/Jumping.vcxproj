@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Custom Transform.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Jumping.cpp" />
     <ClCompile Include="main.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="HardwareCheck.h" />
     <ClInclude Include="Jumping.h" />
     <ClInclude Include="Music.h" />
