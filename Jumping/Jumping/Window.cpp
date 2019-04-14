@@ -97,6 +97,64 @@ void Window::Initialize(int width, int height)
 			}
 		}
 
+		for (int i = 0; i < sizeof(platformList) / sizeof(Platform); i++)
+		{
+			if (platformList[i].GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+
+		for (int i = 0; i < sizeof(enemy1) / sizeof(Enemy); i++)
+		{
+			if (enemy1.GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+
+		for (int i = 0; i < sizeof(enemy2) / sizeof(Enemy); i++)
+		{
+			if (enemy2.GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+
+		for (int i = 0; i < sizeof(enemy3) / sizeof(Enemy); i++)
+		{
+			if (enemy3.GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+
+		for (int i = 0; i < sizeof(enemy4) / sizeof(Enemy); i++)
+		{
+			if (enemy4.GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+
+
+		for (int i = 0; i < sizeof(enemy5) / sizeof(Enemy); i++)
+		{
+			if (enemy5.GetCollider().CheckCollision(playerCollRect, direction, platformList[i].resistance, platformList[i].isMovable))
+			{
+				player.bottom = platformList[i].GetCollider().bottomCollider(playerCollRect);
+			}
+		}
+
+
+
+
+
+
+
+
+
+
 		Collider enemyCollRect1 = enemy1.GetCollider();
 		Collider enemyCollRect2 = enemy2.GetCollider();
 		Collider enemyCollRect3 = enemy3.GetCollider();
