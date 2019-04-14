@@ -8,7 +8,7 @@ class Enemy
 public:
 	Enemy(sf::Texture* texture, sf::Vector2f position, float speed);
 	~Enemy();
-	void Move(float deltaTime);
+	void Move(float deltaTime, int time);
 	bool isPlaying = false;
 	bool bottom = false;
 	void Draw(sf::RenderWindow& window);

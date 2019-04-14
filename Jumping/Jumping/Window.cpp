@@ -37,11 +37,11 @@ void Window::Initialize(int width, int height)
 	enemySprite.loadFromFile("Robot.jpg");
 	
 
-	Enemy enemy1(&enemySprite, sf::Vector2f(200.0f, 500.0f), 10.0f);
-	Enemy enemy2(&enemySprite, sf::Vector2f(350.0f, 400.0f), 10.0f);
-	Enemy enemy3(&enemySprite, sf::Vector2f(450.0f, 500.0f), 10.0f);
+	Enemy enemy1(&enemySprite, sf::Vector2f(170.0f, 500.0f), 10.0f);
+	Enemy enemy2(&enemySprite, sf::Vector2f(320.0f, 400.0f), 10.0f);
+	Enemy enemy3(&enemySprite, sf::Vector2f(420.0f, 500.0f), 10.0f);
 	Enemy enemy4(&enemySprite, sf::Vector2f(640.0f, 350.0f), 10.0f);
-	Enemy enemy5(&enemySprite, sf::Vector2f(350.0f, 600.0f), 10.0f);
+	Enemy enemy5(&enemySprite, sf::Vector2f(325.0f, 600.0f), 10.0f);
 
 	Platform platformList[25] = {
 	Platform(&building, sf::Vector2f(150.0f, 100.0f), sf::Vector2f(50.0f, 600.0f), 500.0f, false),
@@ -196,11 +196,12 @@ void Window::Initialize(int width, int height)
 
 		
 		player.Move(deltaTime);
-		enemy1.Move(deltaTime);
-		enemy2.Move(deltaTime);
-		enemy3.Move(deltaTime);
-		enemy4.Move(deltaTime);
-		enemy5.Move(deltaTime);
+
+		enemy1.Move(deltaTime, 5);
+		enemy2.Move(deltaTime, 4);
+		enemy3.Move(deltaTime, 6);
+		enemy4.Move(deltaTime, 3);
+		enemy5.Move(deltaTime, 9);
 
 		window.clear();
 

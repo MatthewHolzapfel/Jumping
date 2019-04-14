@@ -15,16 +15,16 @@ Enemy::Enemy(sf::Texture* texture, sf::Vector2f position, float speed)
 	body.setOrigin(body.getSize() / 2.0f);
 }
 
-void Enemy::Move(float deltaTime) {
+void Enemy::Move(float deltaTime, int time) {
 	this->bottom = false;
 	velocity.y = 0.0f;
 	velocity.x = 0.0f;
 	bool moving = true;
 	
 	turnTime += deltaTime;
-	if (turnTime > 3.0f) {
+	if (turnTime > time) {
 		moveRight = !moveRight;
-		turnTime -= 3.0f;
+		turnTime -= time;
 	}
 	if (moveRight) {
 		velocity.x += speed;
